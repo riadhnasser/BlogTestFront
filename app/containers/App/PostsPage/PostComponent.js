@@ -2,25 +2,20 @@ import React from 'react';
 import { useForm, Controller } from "react-hook-form";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import { useDispatch, useSelector } from 'react-redux';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
 import IconButton from '@material-ui/core/IconButton';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import CardHeader from '@material-ui/core/CardHeader';
 import { CardContent } from '@material-ui/core';
-import CommentsList from './CommentsList';
-import {Row} from 'react-bootstrap';
 import CommentIcon from '@material-ui/icons/Comment';
 import CardActions from '@material-ui/core/CardActions';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { saveComment } from './actions';
+import CommentsList from './CommentsList';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -64,7 +59,6 @@ export const  PostComponent = ({text = "Shrimp and Chorizo Paella", title, creat
       authorId: user.id,
       postId: id,
     }
-    console.log("commnet==>", newComment);
     setNewComment(false);
     dispatch(saveComment(newComment, id))
   }
@@ -78,10 +72,14 @@ export const  PostComponent = ({text = "Shrimp and Chorizo Paella", title, creat
             {author.firstName.substring(0, 1)}
           </Avatar>
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
+        action={user.id == author.id && <React.Fragment>
+          <IconButton edge="end" aria-label="edit">
+            <EditIcon/>
           </IconButton>
+          <IconButton edge="end" aria-label="delete">
+            <DeleteIcon />
+          </IconButton>
+        </React.Fragment>
         }
         title={<Typography gutterBottom variant="h5" component="h2">
           {text}

@@ -47,7 +47,6 @@ export const  LoginPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const onSubmit = (data) => {
-    console.log('user ==>', data);
     dispatch(login(data, history));
   }
 

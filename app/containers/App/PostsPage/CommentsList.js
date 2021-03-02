@@ -12,6 +12,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 const CommentComponent = ({text = 'Brunch this weekend?', creationDate = 'September 14, 2016',
   author = {firstName: 'Riadh'}}) => {
   const classes = useStyles();
+  const user = useSelector(state => state.authentication.user);
 
   return (
 
@@ -55,14 +57,14 @@ const CommentComponent = ({text = 'Brunch this weekend?', creationDate = 'Septem
           </React.Fragment>
         }
       />
-      <ListItemSecondaryAction>
+      {user.id == author.id && <ListItemSecondaryAction>
         <IconButton edge="end" aria-label="edit">
           <EditIcon/>
         </IconButton>
         <IconButton edge="end" aria-label="delete">
           <DeleteIcon />
         </IconButton>
-      </ListItemSecondaryAction>
+      </ListItemSecondaryAction>}
     </ListItem>
   );
 }

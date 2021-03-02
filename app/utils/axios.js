@@ -36,7 +36,6 @@ const setupAxiosInterceptors = (dispatch, getState) => {
       }
       const state = getState();
 
-      console.log('Authentication=', state.authentication);
       /* if (state.authentication.isAuthenticated) {
         dispatch(logout());
         dispatch(redirectToLoginWithMessage('L\'utilisateur a été changé pour cette session. Veuillez vous reconnecter !'));

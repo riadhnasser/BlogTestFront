@@ -64,7 +64,6 @@ export const  PostPage = () => {
   const [newPost, setNewPost] = React.useState(false);
   const user = useSelector(state => state.authentication.user);
   const posts = useSelector(state => state.posts.posts);
-  console.log('posts==> ', posts);
 
   const dispatch = useDispatch();
 
@@ -79,7 +78,6 @@ export const  PostPage = () => {
       creationDate: new Date(),
       authorId: user.id,
     }
-    console.log('save post action ==> ', newPostObj);
 
     dispatch(savePost(newPostObj));
   }
